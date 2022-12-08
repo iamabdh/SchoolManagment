@@ -1,8 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class SchoolManagement {
 	
-	public static String[][] StudentData = new String[10][4];
-	public static int IndexStudentData = 0;
+	public static ArrayList<ArrayList<String>> StudentData = new ArrayList<ArrayList<String>>();
 	public static void main(String[] args) {		
 		displayHeadings("School Management System");
 		String contiune = "y";
@@ -18,7 +18,7 @@ public class SchoolManagement {
 				 System.out.println("Wrong Option");
 				
 			}
-			System.out.println("continue: y or n");
+			System.out.println("\ncontinue: y or n");
 			contiune = inputScanner.next();
 		}
 	}
@@ -72,28 +72,24 @@ public class SchoolManagement {
 	}
 	
 	public static void addStudent(int id, String fname, String lname, String college) {
-		if (IndexStudentData <= 9) {
-			StudentData[IndexStudentData][0] = Integer.toString(id);
-			StudentData[IndexStudentData][1] = fname;
-			StudentData[IndexStudentData][2] = lname;
-			StudentData[IndexStudentData][3] = college;	
-			IndexStudentData ++;
-			System.out.println("Student Saved Successfully");
-		} else {
-			System.out.println("error: MAX SIZE");
-		}
+		ArrayList<String> student = new ArrayList<String>(4);
+		student.add(Integer.toString(id));
+		student.add(fname);
+		student.add(lname);
+		student.add(college);
+		StudentData.add(student);
 	}
 	
 	public static void displayStudent() {
-		for (int i =  0; i <= IndexStudentData; i++) {
+		for (int i =  0; i < StudentData.size(); i++) {
 			System.out.println();
-			System.out.print(StudentData[i][0]);
+			System.out.print(StudentData.get(i).get(0));
 			System.out.print("\t");
-			System.out.print(StudentData[i][1]);
+			System.out.print(StudentData.get(i).get(1));
 			System.out.print("\t");
-			System.out.print(StudentData[i][2]);
+			System.out.print(StudentData.get(i).get(2));
 			System.out.print("\t");
-			System.out.print(StudentData[i][3]);
+			System.out.print(StudentData.get(i).get(3));
 		}
 	} 
 }
